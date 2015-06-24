@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="medium-8 column">
+    <h1>Question Details</h1>
+
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td><%= @question.try(:title) %></td>
+          <td><%= @question.try(:body) %></td>
+        </tr>
+      </table>
+
+    <a href="/questions">Back to Questions</a>
+
+  </div>
+</div>

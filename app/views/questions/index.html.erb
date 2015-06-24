@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="medium-8 column">
+    <h1>Questions</h1>
+    <%- if !@questions.empty? -%>
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+        <%- @questions.each do |question| -%>
+          <tr>
+            <td><%= link_to question.title, '/questions/' + question.to_param %></td>
+            <td><%= truncate(question.body, length: 30) %></td>
+          </tr>
+        <%- end -%>
+      </table>
+
+    <%- end -%>
+  </div>
+</div>
