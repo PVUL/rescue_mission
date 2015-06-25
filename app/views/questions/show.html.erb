@@ -2,17 +2,26 @@
   <div class="medium-8 column">
     <h1>Question Details</h1>
 
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><%= @question.try(:title) %></td>
+        <td><%= @question.try(:body) %></td>
+      </tr>
+    </table>
       <table>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td><%= @question.try(:title) %></td>
-          <td><%= @question.try(:body) %></td>
-        </tr>
+        <th>Answers</th>
+        <% @question.answers.each do |answer| %>
+          <tr><td><%= answer.body %></td></tr>
+        <% end %>
+
       </table>
+
+    <%= render 'answers/new' %><br>
 
     <a href="/questions">Back to Questions</a>
 

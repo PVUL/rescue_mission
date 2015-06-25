@@ -1,7 +1,6 @@
-class Question < ActiveRecord::Base
+class Answer < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  has_many :answers
-
+  belongs_to :question
 end
