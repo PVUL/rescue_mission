@@ -1,23 +1,21 @@
-<div class="row">
-  <div class="medium-8 column">
-    <h1>Questions</h1>
+<h1>Questions</h1>
 
-    <h5><a href='/questions/new'>Ask a question</a></h5>
-    <%- if !@questions.empty? -%>
-      <table>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th></th>
-        </tr>
-        <%- @questions.each do |question| -%>
-          <tr>
-            <td><%= link_to question.title, '/questions/' + question.to_param %></td>
-            <td><%= truncate(question.body, length: 30) %></td>
-          </tr>
-        <%- end -%>
-      </table>
-
+<h5><%= link_to 'Ask new question', new_question_path %></h5>
+<%- if !@questions.empty? -%>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+    <%- @questions.each do |question| -%>
+      <tr>
+        <td><%= link_to question.title, question_path(question) %></td>
+        <td><%= truncate(question.body, length: 30) %></td>
+        <td><%= link_to 'edit', edit_question_path(question) %></td>
+        <td><%= link_to 'delete', question_path(question), method: :delete %></td>
+      </tr>
     <%- end -%>
-  </div>
-</div>
+  </table>
+
+<%- end -%>

@@ -1,13 +1,8 @@
-<div class="row">
+<h5>New Answer</h5>
 
-  <div class="small-8 column">
-    <h5>New Answer</h5>
+<%= form_for [@question, @answer] do |f| %>
+  <% f.label :body %>
+  <%= f.text_area :body %>
 
-    <%= form_for [@question, @answer] do |f| %>
-      <% f.label :body %>
-      <%= f.text_area :body %>
-
-      <%= f.submit "Submit" %>
-    <%- end -%>
-  </div>
-</div>
+  <%= f.submit "Submit" %>
+<%- end -%>

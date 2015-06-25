@@ -1,0 +1,22 @@
+<h1>Question Details</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><%= @question.try(:title) %></td>
+    <td><%= @question.try(:body) %></td>
+  </tr>
+</table>
+
+<h5>Edit this answer</h5>
+
+<%= form_for [@question, @answer] do |f| %>
+  <% f.label :body %>
+  <%= f.text_area :body %>
+
+  <%= f.submit "Submit" %>
+<%- end -%>

@@ -1,29 +1,30 @@
-<div class="row">
-  <div class="medium-8 column">
-    <h1>Question Details</h1>
+<h1>Question Details</h1>
 
-    <table>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><%= @question.try(:title) %></td>
+    <td><%= @question.try(:body) %></td>
+  </tr>
+</table>
+
+<%- if !@question.answers.empty? -%>
+  <table>
+    <th>Answers</th>
+    <% @answers.each do |answer| %>
       <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th></th>
-      </tr>
-      <tr>
-        <td><%= @question.try(:title) %></td>
-        <td><%= @question.try(:body) %></td>
-      </tr>
-    </table>
-      <table>
-        <th>Answers</th>
-        <% @question.answers.each do |answer| %>
-          <tr><td><%= answer.body %></td></tr>
-        <% end %>
+        <td><%= answer.body %></td>
+        <td><%= link_to 'edit', answer_path(answer) %></td>
+        <td><%= link_to 'delete', answer_path(answer), method: :delete %></td>
+        </tr>
+    <% end %>
 
-      </table>
+  </table>
+<%- end -%>
 
-    <%= render 'answers/new' %><br>
+<%= render 'answers/new' %><br>
 
-    <a href="/questions">Back to Questions</a>
-
-  </div>
-</div>
+<%= link_to 'Back to questions', questions_path %>
