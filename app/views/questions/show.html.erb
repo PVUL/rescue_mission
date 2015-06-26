@@ -8,23 +8,23 @@
   <tr>
     <td><%= @question.try(:title) %></td>
     <td><%= @question.try(:body) %></td>
+    <td><%= link_to 'delete', question_path(@question), method: :delete %></td>
   </tr>
 </table>
 
 <%- if !@question.answers.empty? -%>
   <table>
     <th>Answers</th>
-    <% @answers.each do |answer| %>
+    <%- @answers.each do |answer| -%>
       <tr>
         <td><%= answer.body %></td>
         <td><%= link_to 'edit', answer_path(answer) %></td>
         <td><%= link_to 'delete', answer_path(answer), method: :delete %></td>
         </tr>
     <% end %>
-
   </table>
 <%- end -%>
 
 <%= render 'answers/new' %><br>
 
-<%= link_to 'Back to questions', questions_path %>
+<h5><%= link_to 'Back to questions', questions_path %></h5>

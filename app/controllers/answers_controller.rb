@@ -1,21 +1,25 @@
 class AnswersController < ApplicationController
   def new
+    @answer = Answer.new
+    @question = Question.find_by(id: params[:question_id])
   end
 
   def index
-    @answers = Answer.all
+    @answers = Answer
   end
 
   def create
     @answer = Answer.new(answer_params)
     @question = Question.find_by(id: params[:question_id])
-    @answer.question = @question #associates to the id of the question
+    @answer.question = @question
+    @answers = @question.answers
 
     if @answer.save
       flash[:notice] = 'Answer successfully submitted.'
       redirect_to question_path(@question)
     else
-      render :new
+      flash[:notice] = @answer.errors.full_messages.join(". ")
+      render 'questions/show'
     end
   end
 
@@ -28,12 +32,14 @@ class AnswersController < ApplicationController
     @answer = Answer.find_by(id: params[:id])
     @question = @answer.question
     @answer.update(answer_params)
+    @answers = @question.answers
 
     if @answer.save
       flash[:notice] = 'Answer successfully editted.'
       redirect_to question_path(@question)
     else
-      render :new
+      flash[:notice] = @answer.errors.full_messages.join(". ")
+      render :show
     end
   end
 
@@ -49,12 +55,9 @@ class AnswersController < ApplicationController
     end
   end
 
-
-
   protected
 
   def answer_params
     params.require(:answer).permit(:body)
   end
-
 end

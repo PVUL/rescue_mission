@@ -4,7 +4,6 @@
   <tr>
     <th>Title</th>
     <th>Description</th>
-    <th></th>
   </tr>
   <tr>
     <td><%= @question.try(:title) %></td>
@@ -13,10 +12,10 @@
 </table>
 
 <h5>Edit this answer</h5>
-
 <%= form_for [@question, @answer] do |f| %>
   <% f.label :body %>
   <%= f.text_area :body %>
-
   <%= f.submit "Submit" %>
-<%- end -%>
+<%- end -%><br>
+
+<h5><%= link_to 'Back to Answers', question_path(@question) %></h5>

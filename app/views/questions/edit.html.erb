@@ -1,10 +1,12 @@
 <h1>Edit Question</h1>
+<h5><%= link_to 'Delete this question', question_path(@question), method: :delete %></h5>
 
 <%= form_for @question do |f| %>
   <%= f.label :title %>
   <%= f.text_area :title %>
   <%= f.label :body %>
   <%= f.text_area :body %>
-
   <%= f.submit "Submit" %>
-<%- end -%>
+<%- end -%><br>
+
+<h5><%= link_to 'Back to questions', questions_path %></h5>

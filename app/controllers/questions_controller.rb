@@ -9,18 +9,19 @@ class QuestionsController < ApplicationController
       flash[:notice] = 'Question successfully submitted.'
       redirect_to questions_path
     else
+      flash[:notice] = @question.errors.full_messages.join(". ")
       render :new
     end
   end
 
   def index
-    @questions = Question.all
+    @questions = Question.all.order(created_at: :desc)
   end
 
   def show
     @answer = Answer.new
     @question = Question.find_by(id: params[:id])
-    @answers = @question.answers
+    @answers = @question.answers.order(created_at: :asc)
   end
 
   def edit
@@ -35,6 +36,7 @@ class QuestionsController < ApplicationController
       flash[:notice] = 'Question successfully editted.'
       redirect_to questions_path
     else
+      flash[:notice] = @question.errors.full_messages.join(". ")
       render :new
     end
   end
@@ -55,5 +57,4 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:title, :body)
   end
-
 end

@@ -17,15 +17,15 @@ ActiveRecord::Schema.define(version: 20150624205552) do
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.string   "body"
+    t.string   "body",        null: false
     t.integer  "question_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "title"
-    t.string   "body"
+    t.string   "title",      null: false
+    t.string   "body",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
